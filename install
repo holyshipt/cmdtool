@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+export SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+
+script() {
+   echo "#!/usr/bin/env bash"
+   echo "${SCRIPT_DIR}/frostmourne" '"$@"'
+}
+
+folder="${1:-/usr/local/bin}"
+bin="${folder}/frostmourne"
+
+script > "$bin"
+chmod +x "$bin"

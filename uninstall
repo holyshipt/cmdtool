@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+BIN="/usr/local/bin/frostmourne"
+rm -rf "$BIN" || true
