@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+export SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+source "${SCRIPT_DIR}/src/main.sh"
+
+##? An interactive cheatsheet tool for the command-line
+##?
+##? Usage:
+##?    frostmourne [command] [<args>...] [options]
+##?
+##? Commands:
+##?    search <cmd>             Search for cheatsheets on online repositories
+##?    query  <cmd>             Pre-filter results
+##?    best   <cmd> <args>...   Considers the best match
+##?
+##? Options:
+##?    --print                  Prevent script execution
+##?    --path                   List of paths to look for cheats
+##?    --no-interpolation       Prevent argument interpolation
+##?    --no-preview             Hide command preview window
+##?
+##? Examples:
+##?    frostmourne
+##?    frostmourne --path '/some/folder:/another/folder'
+##?    frostmourne search awk
+##?    frostmourne search docker --print
+##?    frostmourne query git
+##?    frostmourne best 'sql create db' root mydb
+##?
+##? More info:
+##?    search
+##?       Queries cheatsheets from http://cheat.sh
+##?       Please note that these cheatsheets may not work out of the box
+##?       Always check the preview window before executing commands!
+##?    full docs
+##?       Please refer to the README at https://github.com/denisidoro/FM
+
+VERSION="0.11.1"
+FM_ENV="${FM_ENV:-prod}"
+
+opts::eval "$@"
+main "$@"
